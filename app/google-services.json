@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "846511539592",
+    "project_id": "codeboom-ecommerce-app",
+    "storage_bucket": "codeboom-ecommerce-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846511539592:android:6ae75e18e5b0ecd6a6a63d",
+        "android_client_info": {
+          "package_name": "com.example.codeboomecommerceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846511539592-0528r125i8220l2tlatim2j7a7f728hf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJXmh5_ShAdl1x8jiEesnFTpK-qhtF7Qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846511539592-0528r125i8220l2tlatim2j7a7f728hf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
