@@ -1,17 +1,18 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.adapters.CartProductsAdapter
 import com.example.codeboomecommerceapp.databinding.FragmentCartBinding
+import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.ui.HomeActivity
 import com.example.codeboomecommerceapp.ui.ProductViewModel
 
@@ -21,6 +22,7 @@ class CartFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var cartAdapter: CartProductsAdapter
     private lateinit var viewModel: ProductViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,11 +38,29 @@ class CartFragment : Fragment() {
         cartAdapter = CartProductsAdapter(viewModel)
         setUpRecyclerView()
 
+
         viewModel.getAllProducts().observe(viewLifecycleOwner, Observer {
             cartAdapter.differ.submitList(it)
-        })
 
+            calculateCostAndAmount(view,it)
+        })
     }
+
+    private fun calculateCostAndAmount(view: View,list: List<ProductModel>?) {
+         var totalAmount=0
+        for(item in list!!){
+            totalAmount+=item.productSellingPrice!!.toInt()
+        }
+
+        binding.tvAmount.text="$" + totalAmount.toString()
+
+        binding.btnCheckOut.setOnClickListener {
+            val bundle=Bundle()
+            bundle.putString("totalAmount",totalAmount.toString())
+            findNavController().navigate(R.id.action_cartFragment_to_userDetailsFragment)
+        }
+    }
+
 
     private fun setUpRecyclerView() {
         binding.recyclerViewCart.apply {

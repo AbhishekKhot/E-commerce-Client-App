@@ -1,5 +1,7 @@
 package com.example.codeboomecommerceapp.ui
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +9,8 @@ import android.view.View
 import android.widget.Toast
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ActivityPhoneNoBinding
+import com.example.codeboomecommerceapp.util.Constants.KEY_NUMBER
+import com.example.codeboomecommerceapp.util.Constants.SHARED_PREFERENCE_NAME
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.google.firebase.auth.FirebaseAuth
@@ -21,8 +25,9 @@ class PhoneNoActivity : AppCompatActivity() {
     private lateinit var mCallbacks: OnVerificationStateChangedCallbacks
     private var firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var countryCode: String
-    private lateinit var phoneNumber:String
+    private lateinit var phoneNumber: String
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPhoneNoBinding.inflate(layoutInflater)
@@ -31,29 +36,35 @@ class PhoneNoActivity : AppCompatActivity() {
         countryCode = binding.codePicker.selectedCountryCodeWithPlus
 
         binding.codePicker.setOnCountryChangeListener {
-            countryCode=binding.codePicker.selectedCountryCodeWithPlus
+            countryCode = binding.codePicker.selectedCountryCodeWithPlus
         }
+
+//        val preferences = getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+//        val editor = preferences.edit()
+//        editor.putString(KEY_NUMBER,binding.etPhoneNumber.text.toString())
+//        editor.apply()
 
         binding.btnContinue.setOnClickListener {
             val number = binding.etPhoneNumber.text.toString()
             if (number.isEmpty()) {
                 binding.etPhoneNumber.requestFocus()
-                binding.etPhoneNumber.error="Empty"
-            } else if(number.length<10 || number.length>10) {
+                binding.etPhoneNumber.error = "Empty"
+            } else if (number.length < 10 || number.length > 10) {
                 binding.etPhoneNumber.requestFocus()
-                binding.etPhoneNumber.error="Not Valid Number"
-            }else{
-                binding.progressBar.visibility=View.VISIBLE
+                binding.etPhoneNumber.error = "Not Valid Number"
+            } else {
+                binding.progressBar.visibility = View.VISIBLE
                 binding.btnContinue.setBackgroundColor(R.color.grey)
-                 phoneNumber=countryCode+number
-                val options=PhoneAuthOptions.newBuilder(firebaseAuth)
+                phoneNumber = countryCode + number
+                val options = PhoneAuthOptions.newBuilder(firebaseAuth)
                     .setPhoneNumber(phoneNumber)
-                    .setTimeout(60L,TimeUnit.SECONDS)
+                    .setTimeout(60L, TimeUnit.SECONDS)
                     .setActivity(this)
                     .setCallbacks(mCallbacks)
                     .build()
 
                 PhoneAuthProvider.verifyPhoneNumber(options)
+
             }
         }
 
@@ -62,25 +73,30 @@ class PhoneNoActivity : AppCompatActivity() {
 
             override fun onVerificationFailed(p0: FirebaseException) {}
 
-            override fun onCodeSent(s: String, foreResendingToken: PhoneAuthProvider.ForceResendingToken) {
+            override fun onCodeSent(
+                s: String,
+                foreResendingToken: PhoneAuthProvider.ForceResendingToken,
+            ) {
                 super.onCodeSent(s, foreResendingToken)
-                Toast.makeText(this@PhoneNoActivity,"OTP sent successfully",Toast.LENGTH_SHORT).show()
-                binding.progressBar.visibility=View.INVISIBLE
-                val codeSent=s
-                val intent = Intent(this@PhoneNoActivity,AuthenticationActivity::class.java)
-                intent.putExtra("otp",codeSent)
-                intent.putExtra("phoneNumber",phoneNumber)
+                Toast.makeText(this@PhoneNoActivity, "OTP sent successfully", Toast.LENGTH_SHORT)
+                    .show()
+                binding.progressBar.visibility = View.INVISIBLE
+                val codeSent = s
+                val intent = Intent(this@PhoneNoActivity, AuthenticationActivity::class.java)
+                intent.putExtra("otp", codeSent)
+                intent.putExtra("phoneNumber", phoneNumber)
                 startActivity(intent)
                 finish()
             }
         }
+
     }
 
     override fun onStart() {
         super.onStart()
         binding.etPhoneNumber.requestFocus()
 
-        if(firebaseAuth.currentUser?.uid!=null){
+        if (firebaseAuth.currentUser?.uid != null) {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()

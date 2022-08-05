@@ -21,7 +21,11 @@
         android:id="@+id/cartFragment"
         android:name="com.example.codeboomecommerceapp.ui.fragments.CartFragment"
         android:label="My Cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.codeboomecommerceapp.ui.fragments.AccountFragment"
@@ -33,9 +37,10 @@
         <action
             android:id="@+id/action_accountFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+
         <action
-            android:id="@+id/action_accountFragment_to_termsAndConditionsFragment"
-            app:destination="@id/termsAndConditionsFragment" />
+            android:id="@+id/action_accountFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
@@ -47,11 +52,7 @@
         android:name="com.example.codeboomecommerceapp.ui.fragments.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/termsAndConditionsFragment"
-        android:name="com.example.codeboomecommerceapp.ui.fragments.TermsAndConditionsFragment"
-        android:label="Terms And Conditions"
-        tools:layout="@layout/fragment_terms_and_conditions" />
+
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.codeboomecommerceapp.ui.fragments.CategoriesFragment"
@@ -78,6 +79,15 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.example.codeboomecommerceapp.ui.fragments.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details" >
+        <argument
+            android:name="totalAmount"
+            app:argType="string" />
     </fragment>
 
 </navigation>
