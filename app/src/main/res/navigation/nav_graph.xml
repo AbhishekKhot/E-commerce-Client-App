@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_accountFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_termsAndConditionsFragment"
+            app:destination="@id/termsAndConditionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
@@ -91,6 +94,17 @@
         <argument
             android:name="totalAmount"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsAndConditionsFragment"
+        android:name="com.example.codeboomecommerceapp.ui.fragments.TermsAndConditionsFragment"
+        android:label="fragment_terms_and_conditions"
+        tools:layout="@layout/fragment_terms_and_conditions" >
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="https://www.google.com" />
     </fragment>
 
 </navigation>

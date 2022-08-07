@@ -1,7 +1,5 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +11,6 @@ import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.FragmentAccountBinding
 import com.example.codeboomecommerceapp.model.UserInfo
 import com.google.firebase.firestore.FirebaseFirestore
-import java.lang.Exception
-
 
 class AccountFragment : Fragment() {
 
@@ -56,12 +52,16 @@ class AccountFragment : Fragment() {
         }
 
         binding.cardTermsAndConditions.setOnClickListener {
-            try {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.termsandcondiitionssample.com/live.php?token=HNIN3gDMoYlq6AK5nidELQqsVOH7swbR"))
-                startActivity(browserIntent)
-            }catch(e:Exception) {
-                Toast.makeText(requireContext(),e.message,Toast.LENGTH_SHORT).show()
-            }
+            val bundle=Bundle()
+            bundle.putString("url","https://www.termsandcondiitionssample.com/live.php?token=HNIN3gDMoYlq6AK5nidELQqsVOH7swbR")
+
+            findNavController().navigate(R.id.action_accountFragment_to_termsAndConditionsFragment,bundle)
+//                    try {
+//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.termsandcondiitionssample.com/live.php?token=HNIN3gDMoYlq6AK5nidELQqsVOH7swbR"))
+//                startActivity(browserIntent)
+//            }catch(e:Exception) {
+//                Toast.makeText(requireContext(),e.message,Toast.LENGTH_SHORT).show()
+//            }
         }
     }
 
