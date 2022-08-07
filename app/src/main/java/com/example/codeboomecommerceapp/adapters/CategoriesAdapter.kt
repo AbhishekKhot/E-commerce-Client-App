@@ -11,11 +11,10 @@ import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.CategoryItemBinding
 import com.example.codeboomecommerceapp.model.Category
+import com.example.codeboomecommerceapp.util.CategoriesItemClickListener
 
-class CategoriesAdapter :
+class CategoriesAdapter(val itemClickListener: CategoriesItemClickListener) :
     RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
-
-    //var list: ArrayList<Category>
 
     inner class CategoriesViewHolder(val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -45,9 +44,7 @@ class CategoriesAdapter :
         Glide.with(holder.itemView).load(category.category_image).placeholder(R.drawable.ic_image)
             .into(holder.binding.ivCategory)
         holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("categoryName", category.category_name)
-            it.findNavController().navigate(R.id.action_homeFragment_to_categoriesFragment,bundle)
+            itemClickListener.GoToCategoryProduct(category.category_name.toString())
         }
     }
 

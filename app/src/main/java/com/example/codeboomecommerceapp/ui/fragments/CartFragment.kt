@@ -15,8 +15,10 @@ import com.example.codeboomecommerceapp.databinding.FragmentCartBinding
 import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.ui.HomeActivity
 import com.example.codeboomecommerceapp.ui.ProductViewModel
+import com.example.codeboomecommerceapp.util.CartAdapterOnItemClickListener
+import com.google.android.material.snackbar.Snackbar
 
-class CartFragment : Fragment() {
+class CartFragment : Fragment(),CartAdapterOnItemClickListener {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
@@ -35,7 +37,7 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as HomeActivity).viewModel
-        cartAdapter = CartProductsAdapter(viewModel)
+        cartAdapter = CartProductsAdapter(this)
         setUpRecyclerView()
 
 
@@ -67,6 +69,11 @@ class CartFragment : Fragment() {
             this.layoutManager = LinearLayoutManager(requireContext())
             this.adapter = cartAdapter
         }
+    }
+
+    override fun deleteItem(data: ProductModel,view:View) {
+        viewModel.deleteProduct(data)
+        Snackbar.make(view,"Item Removed Successfully From Cart",Snackbar.LENGTH_SHORT).show()
     }
 
 }

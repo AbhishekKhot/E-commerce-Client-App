@@ -9,8 +9,6 @@ import android.view.View
 import android.widget.Toast
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ActivityPhoneNoBinding
-import com.example.codeboomecommerceapp.util.Constants.KEY_NUMBER
-import com.example.codeboomecommerceapp.util.Constants.SHARED_PREFERENCE_NAME
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.google.firebase.auth.FirebaseAuth

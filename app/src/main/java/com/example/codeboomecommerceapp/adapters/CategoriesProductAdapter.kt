@@ -11,9 +11,12 @@ import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.CategorisedProductItemBinding
 import com.example.codeboomecommerceapp.model.Product
+import com.example.codeboomecommerceapp.util.CategoriesItemClickListener
+import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 
-class CategoriesProductAdapter :
+class CategoriesProductAdapter(val itemClickListener: ProductAdapterOnItemClickListener) :
     RecyclerView.Adapter<CategoriesProductAdapter.CategoriesProductViewHolder>() {
+
     inner class CategoriesProductViewHolder(val binding: CategorisedProductItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -45,9 +48,7 @@ class CategoriesProductAdapter :
         holder.binding.tvProductName.text = product.product_name
 
         holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("productID",product.product_id)
-            it.findNavController().navigate(R.id.action_categoriesFragment_to_productDetailsFragment,bundle)
+            itemClickListener.viewDetails(product.product_id.toString())
         }
     }
 

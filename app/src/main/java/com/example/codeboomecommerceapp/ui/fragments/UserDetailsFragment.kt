@@ -1,6 +1,5 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,11 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.codeboomecommerceapp.databinding.FragmentUserDetailsBinding
 import com.example.codeboomecommerceapp.model.UserInfo
-import com.example.codeboomecommerceapp.util.Constants.KEY_NUMBER
-import com.example.codeboomecommerceapp.util.Constants.SHARED_PREFERENCE_NAME
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class UserDetailsFragment : Fragment() {
 
@@ -33,10 +28,10 @@ class UserDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        preferences= this.requireActivity().getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
-
-        binding.etNumber.setText(preferences.getString(KEY_NUMBER,"1234567890").toString())
+//
+//        preferences= this.requireActivity().getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+//
+//        binding.etNumber.setText(preferences.getString(KEY_NUMBER,"1234567890").toString())
 
         loadUserData()
 

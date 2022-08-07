@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.CartItemBinding
 import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.ui.ProductViewModel
+import com.example.codeboomecommerceapp.util.CartAdapterOnItemClickListener
 import com.google.android.material.snackbar.Snackbar
 
-class CartProductsAdapter(val viewModel: ProductViewModel) : RecyclerView.Adapter<CartProductsAdapter.CartProductViewHolder>() {
+class CartProductsAdapter(val itemClickListener: CartAdapterOnItemClickListener) : RecyclerView.Adapter<CartProductsAdapter.CartProductViewHolder>() {
 
     inner class CartProductViewHolder(val binding: CartItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -41,13 +43,11 @@ class CartProductsAdapter(val viewModel: ProductViewModel) : RecyclerView.Adapte
         val product = differ.currentList[position]
         holder.binding.tvProductName.text = product.productName
         holder.binding.tvProductPrice.text = "$" + product.productSellingPrice
-        Glide.with(holder.itemView).load(product.productImage).placeholder(R.drawable.ic_image)
-            .into(holder.binding.ivProduct)
+        Glide.with(holder.itemView).load(product.productImage).placeholder(R.drawable.ic_image).into(holder.binding.ivProduct)
 
         holder.binding.tvDelete.setOnClickListener {
             val data=ProductModel(product.productId,product.productName,product.productImage,product.productSellingPrice)
-            viewModel.deleteProduct(data)
-            Snackbar.make(it,"Item Removed Successfully From Cart",Snackbar.LENGTH_SHORT).show()
+            itemClickListener.deleteItem(data,it)
         }
     }
 

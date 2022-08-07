@@ -1,9 +1,7 @@
 package com.example.codeboomecommerceapp.adapters
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,9 +9,10 @@ import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ProductItemBinding
 import com.example.codeboomecommerceapp.model.Product
-import com.example.codeboomecommerceapp.ui.ProductViewModel
+import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 
-class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(val itemClickListener: ProductAdapterOnItemClickListener) :
+    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -45,12 +44,14 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
             .placeholder(R.drawable.ic_image).into(holder.binding.ivProduct)
 
 
-        holder.binding.ivProduct.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("productID", product.product_id)
-            it.findNavController()
-                .navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+        holder.binding.tvAddToCart.setOnClickListener {
+            itemClickListener.addToCart(product.product_id.toString())
         }
+
+        holder.binding.ivProduct.setOnClickListener {
+            itemClickListener.viewDetails(product.product_id.toString())
+        }
+
     }
 
     override fun getItemCount(): Int {

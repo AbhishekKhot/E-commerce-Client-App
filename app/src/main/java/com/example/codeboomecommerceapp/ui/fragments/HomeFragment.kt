@@ -5,27 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.FragmentHomeBinding
 import com.example.codeboomecommerceapp.adapters.CategoriesAdapter
 import com.example.codeboomecommerceapp.adapters.ProductAdapter
 import com.example.codeboomecommerceapp.model.Category
 import com.example.codeboomecommerceapp.model.Product
+import com.example.codeboomecommerceapp.util.CategoriesItemClickListener
+import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ProductAdapterOnItemClickListener, CategoriesItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val fireStore = Firebase.firestore
-    private val productAdapter = ProductAdapter()
+    private val productAdapter = ProductAdapter(this)
+    private val categoryAdapter = CategoriesAdapter(this)
+    val list = ArrayList<Product>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -36,15 +38,9 @@ class HomeFragment : Fragment() {
         setUpSlider()
         getCategories()
         getProducts()
-
-
-
     }
 
-
-
     private fun getProducts() {
-        val list = ArrayList<Product>()
         fireStore.collection("Products").get()
             .addOnSuccessListener {
                 list.clear()
@@ -74,10 +70,25 @@ class HomeFragment : Fragment() {
                     val data = doc.toObject(Category::class.java)
                     list.add(data!!)
                 }
-                val categoryAdapter = CategoriesAdapter()
                 categoryAdapter.differ.submitList(list)
                 binding.recyclerViewCategories.adapter = categoryAdapter
             }
+    }
+
+    override fun viewDetails(id: String) {
+            val bundle = Bundle()
+            bundle.putString("productID", id)
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+    }
+
+    override fun addToCart(id: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun GoToCategoryProduct(name: String) {
+        val bundle = Bundle()
+        bundle.putString("categoryName", name)
+        findNavController().navigate(R.id.action_homeFragment_to_categoriesFragment,bundle)
     }
 
 }
