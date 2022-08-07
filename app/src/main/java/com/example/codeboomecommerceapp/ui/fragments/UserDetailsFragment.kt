@@ -1,6 +1,5 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ class UserDetailsFragment : Fragment() {
 
     private var _binding:FragmentUserDetailsBinding?=null
     private val binding get() = _binding!!
-    private lateinit var preferences:SharedPreferences
     private val fireStore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
@@ -28,11 +26,6 @@ class UserDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//
-//        preferences= this.requireActivity().getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
-//
-//        binding.etNumber.setText(preferences.getString(KEY_NUMBER,"1234567890").toString())
-
         loadUserData()
 
         binding.btnProceed.setOnClickListener {

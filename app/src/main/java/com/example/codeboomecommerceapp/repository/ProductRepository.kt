@@ -1,7 +1,6 @@
 package com.example.codeboomecommerceapp.repository
 
 import com.example.codeboomecommerceapp.db.ProductDao
-import com.example.codeboomecommerceapp.db.ProductDatabase
 import com.example.codeboomecommerceapp.db.ProductModel
 
 class ProductRepository(

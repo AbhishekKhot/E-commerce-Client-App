@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ProductItemBinding
+import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.model.Product
 import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 
@@ -45,7 +46,13 @@ class ProductAdapter(val itemClickListener: ProductAdapterOnItemClickListener) :
 
 
         holder.binding.tvAddToCart.setOnClickListener {
-            itemClickListener.addToCart(product.product_id.toString())
+            val data = ProductModel(
+                product.product_id.toString(),
+                product.product_name,
+                product.product_cover_image,
+                product.product_selling_price
+            )
+            itemClickListener.addToCart(data,it)
         }
 
         holder.binding.ivProduct.setOnClickListener {

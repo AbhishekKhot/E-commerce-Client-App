@@ -1,6 +1,5 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,13 +17,13 @@ import com.example.codeboomecommerceapp.ui.ProductViewModel
 import com.example.codeboomecommerceapp.util.CartAdapterOnItemClickListener
 import com.google.android.material.snackbar.Snackbar
 
+
 class CartFragment : Fragment(),CartAdapterOnItemClickListener {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
     private lateinit var cartAdapter: CartProductsAdapter
-    private lateinit var viewModel: ProductViewModel
-
+    private lateinit var viewModel:ProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,10 +35,10 @@ class CartFragment : Fragment(),CartAdapterOnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as HomeActivity).viewModel
         cartAdapter = CartProductsAdapter(this)
         setUpRecyclerView()
 
+        viewModel = (activity as HomeActivity).viewModel
 
         viewModel.getAllProducts().observe(viewLifecycleOwner, Observer {
             cartAdapter.differ.submitList(it)

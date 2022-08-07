@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.repository.ProductRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ProductViewModel(
+class ProductViewModel (
     val repository: ProductRepository,
 ) : ViewModel() {
 

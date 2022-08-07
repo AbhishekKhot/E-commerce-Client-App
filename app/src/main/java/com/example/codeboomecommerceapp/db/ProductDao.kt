@@ -1,15 +1,12 @@
 package com.example.codeboomecommerceapp.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.codeboomecommerceapp.model.Product
 
 @Dao
 interface ProductDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProduct(product: ProductModel)
 
     @Delete
