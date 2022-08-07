@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productSearchFragment"
+            app:destination="@id/productSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -105,6 +108,19 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="https://www.google.com" />
+    </fragment>
+    <fragment
+        android:id="@+id/productSearchFragment"
+        android:name="com.example.codeboomecommerceapp.ui.fragments.ProductSearchFragment"
+        android:label="fragment_product_search"
+        tools:layout="@layout/fragment_product_search" >
+        <argument
+            android:name="searchQuery"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productSearchFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+
     </fragment>
 
 </navigation>

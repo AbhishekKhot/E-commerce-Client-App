@@ -1,23 +1,22 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.codeboomecommerceapp.R
-import com.example.codeboomecommerceapp.databinding.FragmentHomeBinding
 import com.example.codeboomecommerceapp.adapters.CategoriesAdapter
 import com.example.codeboomecommerceapp.adapters.ProductAdapter
+import com.example.codeboomecommerceapp.databinding.FragmentHomeBinding
 import com.example.codeboomecommerceapp.db.ProductDatabase
 import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.model.Category
 import com.example.codeboomecommerceapp.model.Product
 import com.example.codeboomecommerceapp.repository.ProductRepository
-import com.example.codeboomecommerceapp.ui.HomeActivity
 import com.example.codeboomecommerceapp.ui.ProductViewModel
 import com.example.codeboomecommerceapp.ui.ProductViewModelProviderFactory
 import com.example.codeboomecommerceapp.util.CategoriesItemClickListener
@@ -25,6 +24,7 @@ import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.mancj.materialsearchbar.MaterialSearchBar.OnSearchActionListener
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 
@@ -58,6 +58,17 @@ class HomeFragment : Fragment(), ProductAdapterOnItemClickListener, CategoriesIt
         setUpSlider()
         getCategories()
         getProducts()
+
+        binding.searchBar.setOnSearchActionListener(object : OnSearchActionListener {
+            override fun onSearchStateChanged(enabled: Boolean) {}
+            override fun onSearchConfirmed(text: CharSequence) {
+                val bundle=Bundle()
+                bundle.putString("searchQuery",text.toString())
+                findNavController().navigate(R.id.action_homeFragment_to_productSearchFragment,bundle)
+            }
+
+            override fun onButtonClicked(buttonCode: Int) {}
+        })
     }
 
     private fun getProducts() {
