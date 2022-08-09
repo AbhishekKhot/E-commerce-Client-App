@@ -3,19 +3,22 @@ package com.example.codeboomecommerceapp.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ActivityPhoneNoBinding
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import java.util.concurrent.TimeUnit
+
 
 class PhoneNoActivity : AppCompatActivity() {
 
@@ -24,7 +27,6 @@ class PhoneNoActivity : AppCompatActivity() {
     private var firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var countryCode: String
     private lateinit var phoneNumber: String
-
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +39,11 @@ class PhoneNoActivity : AppCompatActivity() {
             countryCode = binding.codePicker.selectedCountryCodeWithPlus
         }
 
-//        val preferences = getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
-//        val editor = preferences.edit()
-//        editor.putString(KEY_NUMBER,binding.etPhoneNumber.text.toString())
-//        editor.apply()
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = prefs.edit()
 
+//        shared = getSharedPreferences("ECommerceApp" , Context.MODE_PRIVATE)
+//        val editor = shared.edit()
         binding.btnContinue.setOnClickListener {
             val number = binding.etPhoneNumber.text.toString()
             if (number.isEmpty()) {
@@ -53,6 +55,8 @@ class PhoneNoActivity : AppCompatActivity() {
             } else {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.btnContinue.setBackgroundColor(R.color.grey)
+                editor.putString("PhoneNumber",binding.etPhoneNumber.text.toString())
+                editor.apply()
                 phoneNumber = countryCode + number
                 val options = PhoneAuthOptions.newBuilder(firebaseAuth)
                     .setPhoneNumber(phoneNumber)

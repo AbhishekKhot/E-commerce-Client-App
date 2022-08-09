@@ -3,6 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.codeboomecommerceapp">
 
+    <queries>
+
+        <!-- List of apps which you want to support for Intent pay -->
+        <package android:name="com.google.android.apps.nbu.paisa.user" />
+        <package android:name="com.phonepe.app" />
+        <!--
+             Specific intents you query for,
+             eg: for a custom share UI
+        -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,8 +30,20 @@
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PaymentActivity"
+            android:exported="false">
+            <intent-filter>
+                <data
+                    android:host="rzp.io"
+                    android:scheme="io.rzp" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.PhoneNoActivity"
             android:exported="true">
@@ -27,8 +55,11 @@
         </activity>
         <activity
             android:name=".ui.AuthenticationActivity"
-            android:exported="true"/>
+            android:exported="true" />
 
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_kTZdAKmkK84yzH" />
     </application>
 
 </manifest>

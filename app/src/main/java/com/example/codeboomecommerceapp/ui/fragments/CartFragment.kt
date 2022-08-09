@@ -58,7 +58,7 @@ class CartFragment : Fragment(),CartAdapterOnItemClickListener {
         binding.btnCheckOut.setOnClickListener {
             val bundle=Bundle()
             bundle.putString("totalAmount",totalAmount.toString())
-            findNavController().navigate(R.id.action_cartFragment_to_userDetailsFragment)
+            findNavController().navigate(R.id.action_cartFragment_to_addressActivity,bundle)
         }
     }
 

@@ -28,9 +28,10 @@
         android:name="com.example.codeboomecommerceapp.ui.fragments.CartFragment"
         android:label="My Cart"
         tools:layout="@layout/fragment_cart" >
+
         <action
-            android:id="@+id/action_cartFragment_to_userDetailsFragment"
-            app:destination="@id/userDetailsFragment" />
+            android:id="@+id/action_cartFragment_to_addressActivity"
+            app:destination="@id/addressActivity" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -89,15 +90,14 @@
             android:id="@+id/action_productDetailsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/userDetailsFragment"
-        android:name="com.example.codeboomecommerceapp.ui.fragments.UserDetailsFragment"
-        android:label="fragment_user_details"
-        tools:layout="@layout/fragment_user_details" >
-        <argument
-            android:name="totalAmount"
-            app:argType="string" />
-    </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/userDetailsFragment"-->
+<!--        android:name="com.example.codeboomecommerceapp.ui.fragments.UserDetailsFragment"-->
+<!--        android:label="fragment_user_details"-->
+<!--        tools:layout="@layout/fragment_user_details" >-->
+<!--    </fragment>-->
+
     <fragment
         android:id="@+id/termsAndConditionsFragment"
         android:name="com.example.codeboomecommerceapp.ui.fragments.TermsAndConditionsFragment"
@@ -122,5 +122,21 @@
             app:destination="@id/productDetailsFragment" />
 
     </fragment>
+    <activity
+        android:id="@+id/paymentActivity"
+        android:name="com.example.codeboomecommerceapp.ui.PaymentActivity"
+        android:label="activity_payment"
+        tools:layout="@layout/activity_payment" >
+
+    </activity>
+    <activity
+        android:id="@+id/addressActivity"
+        android:name="com.example.codeboomecommerceapp.ui.AddressActivity"
+        android:label="activity_address"
+        tools:layout="@layout/activity_address" >
+        <argument
+            android:name="totalAmount"
+            app:argType="string" />
+    </activity>
 
 </navigation>
