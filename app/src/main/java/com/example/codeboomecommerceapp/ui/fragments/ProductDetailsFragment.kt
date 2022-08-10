@@ -61,16 +61,16 @@ class ProductDetailsFragment : Fragment() {
             .addOnSuccessListener {
                 val list = it.get("product_images") as ArrayList<String>
                 val name = it.getString("product_name").toString()
-                val price = it.getString("product_selling_price").toString()
+                val price = it.getString("product_selling_price").toString().trim()
                 val image = it.getString("product_cover_image").toString()
                 val id = it.getString("product_id").toString()
-                val mrp = it.getString("product_mrp").toString()
+                val mrp = it.getString("product_mrp").toString().trim()
 
                 binding.tvProductName.text = it.getString("product_name")
                 binding.tvProductDescription.text = it.getString("product_description")
                 binding.tvProductPrice.text = "$" + it.getString("product_mrp")
                 binding.tvProductSellingPrice.text = "$" + it.getString("product_selling_price")
-                val discount=mrp.toInt()-price.toInt()
+                val discount= mrp.toInt()-price.toInt()
                 val rateOfDiscount=(100*discount)/mrp.toInt()
                 binding.tvDiscount.text= "${rateOfDiscount}% Off"
 
