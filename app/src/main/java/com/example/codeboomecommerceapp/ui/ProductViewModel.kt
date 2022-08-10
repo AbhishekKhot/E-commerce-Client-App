@@ -14,9 +14,18 @@ class ProductViewModel (
         repository.insertProduct(product)
     }
 
+//    fun insertSavedProduct(product: ProductModel) = viewModelScope.launch {
+//        repository.insertSavedProduct(product)
+//    }
+
+
     fun deleteProduct(product: ProductModel) = viewModelScope.launch {
         repository.deleteProduct(product)
     }
+
+//    fun deleteSavedProduct(product: ProductModel) = viewModelScope.launch {
+//        repository.deleteSavedProduct(product)
+//    }
 
     fun getAllProducts() = repository.getAllProduct()
 

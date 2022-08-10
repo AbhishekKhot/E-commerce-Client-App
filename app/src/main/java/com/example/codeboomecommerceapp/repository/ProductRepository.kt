@@ -9,8 +9,14 @@ class ProductRepository(
     suspend fun insertProduct(product:ProductModel) =
         db.insertProduct(product)
 
+//    suspend fun insertSavedProduct(product: ProductModel)=
+//        db.insertSavedProduct(product)
+
     suspend fun deleteProduct(product:ProductModel) =
         db.deleteProduct(product)
+
+//    suspend fun deleteSavedProduct(product:ProductModel) =
+//        db.deleteSavedProduct(product)
 
     fun getAllProduct() = db.getAllProduct()
 

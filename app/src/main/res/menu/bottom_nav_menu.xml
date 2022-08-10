@@ -13,6 +13,11 @@
         android:title="" />
 
     <item
+        android:id="@+id/savedProductsFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="" />
+
+    <item
         android:id="@+id/accountFragment"
         android:icon="@drawable/ic_account"
         android:title="" />

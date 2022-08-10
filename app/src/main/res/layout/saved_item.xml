@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:elevation="50dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:background="?attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +41,7 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/tvProductPrice"
+                android:id="@+id/tvAddToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/raleway"
@@ -48,21 +49,22 @@
                 android:background="@drawable/text_background"
                 android:layout_weight="1"
                 android:padding="3dp"
+                android:backgroundTint="@color/yellow"
                 android:layout_marginHorizontal="3dp"
-                android:text="@string/_24_00"
+                android:text="@string/add_to_cart"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvDelete"
+                android:id="@+id/tvRemove"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/text_background"
-                android:backgroundTint="@color/yellow"
                 android:fontFamily="@font/raleway"
                 android:gravity="center"
                 android:padding="3dp"
+                android:backgroundTint="@color/yellow"
                 android:layout_marginHorizontal="3dp"
                 android:layout_weight="1"
                 android:text="@string/remove"

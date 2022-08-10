@@ -114,7 +114,7 @@ class HomeFragment : Fragment(), ProductAdapterOnItemClickListener, CategoriesIt
 
     override fun addToCart(data: ProductModel, view: View) {
         viewModel.insertProduct(data)
-        Snackbar.make(view,"Item added to cart",Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(view,"Item Added To Cart",Snackbar.LENGTH_SHORT).show()
     }
 
 

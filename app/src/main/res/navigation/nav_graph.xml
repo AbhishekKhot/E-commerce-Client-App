@@ -138,5 +138,10 @@
             android:name="totalAmount"
             app:argType="string" />
     </activity>
+    <fragment
+        android:id="@+id/savedProductsFragment"
+        android:name="com.example.codeboomecommerceapp.ui.fragments.SavedProductsFragment"
+        android:label="fragment_saved_products"
+        tools:layout="@layout/fragment_saved_products" />
 
 </navigation>

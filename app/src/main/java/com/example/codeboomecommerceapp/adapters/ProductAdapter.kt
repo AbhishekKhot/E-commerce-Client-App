@@ -1,5 +1,6 @@
 package com.example.codeboomecommerceapp.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -53,6 +54,7 @@ class ProductAdapter(val itemClickListener: ProductAdapterOnItemClickListener) :
                 product.product_selling_price
             )
             itemClickListener.addToCart(data,it)
+            it.setBackgroundColor(Color.RED)
         }
 
         holder.binding.ivProduct.setOnClickListener {
