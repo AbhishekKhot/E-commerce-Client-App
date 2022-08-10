@@ -62,7 +62,6 @@ class CartFragment : Fragment(),CartAdapterOnItemClickListener {
         }
     }
 
-
     private fun setUpRecyclerView() {
         binding.recyclerViewCart.apply {
             this.layoutManager = LinearLayoutManager(requireContext())

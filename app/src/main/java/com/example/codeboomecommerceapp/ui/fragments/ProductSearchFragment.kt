@@ -12,6 +12,7 @@ import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.adapters.ProductSearchAdapter
 import com.example.codeboomecommerceapp.databinding.FragmentProductSearchBinding
 import com.example.codeboomecommerceapp.db.ProductModel
+import com.example.codeboomecommerceapp.db.SavedProduct
 import com.example.codeboomecommerceapp.model.Product
 import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 import com.google.firebase.firestore.ktx.firestore
@@ -73,6 +74,14 @@ class ProductSearchFragment : Fragment(), ProductAdapterOnItemClickListener {
     }
 
     override fun addToCart(data: ProductModel, view: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToWishList(data: SavedProduct, view: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteSavedProduct(data: SavedProduct, view: View) {
         TODO("Not yet implemented")
     }
 

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ProductItemBinding
 import com.example.codeboomecommerceapp.db.ProductModel
+import com.example.codeboomecommerceapp.db.SavedProduct
 import com.example.codeboomecommerceapp.model.Product
 import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 
@@ -47,13 +48,14 @@ class ProductAdapter(val itemClickListener: ProductAdapterOnItemClickListener) :
 
 
         holder.binding.tvAddToCart.setOnClickListener {
-            val data = ProductModel(
+            val data = SavedProduct(
                 product.product_id.toString(),
                 product.product_name,
                 product.product_cover_image,
-                product.product_selling_price
+                product.product_selling_price,
+                product.product_description
             )
-            itemClickListener.addToCart(data,it)
+            itemClickListener.addToWishList(data,it)
             it.setBackgroundColor(Color.RED)
         }
 

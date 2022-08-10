@@ -13,6 +13,7 @@ import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.FragmentCategoriesBinding
 import com.example.codeboomecommerceapp.adapters.CategoriesProductAdapter
 import com.example.codeboomecommerceapp.db.ProductModel
+import com.example.codeboomecommerceapp.db.SavedProduct
 import com.example.codeboomecommerceapp.model.Product
 import com.example.codeboomecommerceapp.ui.ProductViewModel
 import com.example.codeboomecommerceapp.util.GridSpacingItemDecoration
@@ -71,6 +72,14 @@ class CategoriesFragment : Fragment(), ProductAdapterOnItemClickListener {
     }
 
     override fun addToCart(data: ProductModel,view: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addToWishList(data: SavedProduct, view: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteSavedProduct(data: SavedProduct, view: View) {
         TODO("Not yet implemented")
     }
 

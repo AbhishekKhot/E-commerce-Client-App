@@ -1,10 +1,10 @@
 package com.example.codeboomecommerceapp.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +14,7 @@ import com.example.codeboomecommerceapp.adapters.ProductAdapter
 import com.example.codeboomecommerceapp.databinding.FragmentHomeBinding
 import com.example.codeboomecommerceapp.db.ProductDatabase
 import com.example.codeboomecommerceapp.db.ProductModel
+import com.example.codeboomecommerceapp.db.SavedProduct
 import com.example.codeboomecommerceapp.model.Category
 import com.example.codeboomecommerceapp.model.Product
 import com.example.codeboomecommerceapp.repository.ProductRepository
@@ -113,10 +114,17 @@ class HomeFragment : Fragment(), ProductAdapterOnItemClickListener, CategoriesIt
     }
 
     override fun addToCart(data: ProductModel, view: View) {
-        viewModel.insertProduct(data)
-        Snackbar.make(view,"Item Added To Cart",Snackbar.LENGTH_SHORT).show()
+
     }
 
+    override fun addToWishList(data: SavedProduct, view: View) {
+        viewModel.insertSavedProduct(data)
+        Snackbar.make(view,"Item Saved Successfully",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun deleteSavedProduct(data: SavedProduct, view: View) {
+        TODO("Not yet implemented")
+    }
 
     override fun GoToCategoryProduct(name: String) {
         val bundle = Bundle()

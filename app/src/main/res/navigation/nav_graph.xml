@@ -142,6 +142,10 @@
         android:id="@+id/savedProductsFragment"
         android:name="com.example.codeboomecommerceapp.ui.fragments.SavedProductsFragment"
         android:label="fragment_saved_products"
-        tools:layout="@layout/fragment_saved_products" />
+        tools:layout="@layout/fragment_saved_products" >
+        <action
+            android:id="@+id/action_savedProductsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
 
 </navigation>
