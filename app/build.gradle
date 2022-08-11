@@ -101,4 +101,7 @@ dependencies {
 //    implementation(name:'google-pay-client-api-1.0.0  ', ext:'aar')
    // implementation 'com.android.support:customtabs:26.1.0'
     implementation 'com.google.android.gms:play-services-tasks:18.0.2'
+
+    //Lottie Animations Library
+    implementation 'com.airbnb.android:lottie:5.2.0'
 }

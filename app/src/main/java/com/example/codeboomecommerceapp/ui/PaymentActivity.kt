@@ -1,11 +1,16 @@
 package com.example.codeboomecommerceapp.ui
 
+import android.animation.Animator
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.ActivityPaymentBinding
 import com.example.codeboomecommerceapp.db.ProductDatabase
 import com.example.codeboomecommerceapp.db.ProductModel
@@ -73,9 +78,11 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
 
     override fun onPaymentSuccess(p0: String?) {
         Toast.makeText(this, "Successfully payed", Toast.LENGTH_SHORT).show()
-
         uploadOrderDataToFireStore()
+        binding.lottieView.visibility=View.VISIBLE
+//        binding.iv.visibility=View.VISIBLE
     }
+
 
     private fun uploadOrderDataToFireStore() {
         dataList.forEach {
@@ -137,5 +144,10 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
         Toast.makeText(this, "Error in payment", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this,HomeActivity::class.java))
+        finish()
+    }
 
 }
