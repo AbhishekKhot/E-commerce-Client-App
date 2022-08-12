@@ -38,8 +38,7 @@
     <string name="category_name">Category Name</string>
     <string name="your_name">Your Name</string>
     <string name="my_cart">My Cart</string>
-    <string name="your_order">Your Order</string>
-    <string name="your_order_history">Your Order History</string>
+    <string name="your_order">Your Orders</string>
     <string name="settings">Settings</string>
     <string name="terms_amp_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="all_products">All Products</string>
@@ -62,4 +61,6 @@
     <string name="_11_08_2022">11/08/2022</string>
     <string name="ordered">Ordered</string>
     <string name="order_status">Order Status</string>
+    <string name="need_help">Need Help ?</string>
+    <string name="cancel">Cancel</string>
 </resources>

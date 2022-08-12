@@ -1,7 +1,11 @@
 package com.example.codeboomecommerceapp.adapters
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +13,12 @@ import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.OrderHistoryBinding
 import com.example.codeboomecommerceapp.model.OrderedProduct
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
-class OrderHistoryAdapter : RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryViewHolder>() {
+class OrderHistoryAdapter(val context: Context) : RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryViewHolder>() {
 
     inner class OrderHistoryViewHolder(val binding: OrderHistoryBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -42,6 +50,44 @@ class OrderHistoryAdapter : RecyclerView.Adapter<OrderHistoryAdapter.OrderHistor
             this.tvPrice.text = "$"+product.Product_Price
             this.tvDate.text = product.Order_time
             this.tvStatus.text=product.Order_status
+        }
+        if(product.Order_status=="Order Cancelled"){
+            holder.binding.tvCancel.visibility=View.INVISIBLE
+        }
+
+        holder.binding.tvCancel.setOnClickListener {
+            val alert = AlertDialog.Builder(context)
+            alert.setTitle("CANCEL ORDER")
+                .setMessage("DO YOU WANT TO CANCEL THE ORDER ?")
+                .setNegativeButton("NO", null)
+                .setPositiveButton("YES") { dialog, which ->
+                    val fireStore= Firebase.firestore
+
+//                    val order_data = hashMapOf<String, Any>()
+//                    order_data["Order_status"]="Order Cancelled"
+//
+//                    fireStore.collection("AllOrders").document(product.Order_Id.toString()).update(order_data)
+//                        .addOnSuccessListener {
+//                            holder.binding.tvCancel.text="Order Cancelled"
+//                        }
+//                        .addOnFailureListener {
+//                            Toast.makeText(context,"Failed, Please Try Again",Toast.LENGTH_SHORT).show()
+//                        }
+
+                    fireStore.collection("AllOrders").whereEqualTo("Product_Id",product.Product_Id).get()
+                        .addOnCompleteListener {
+                            for (snapshot in it.result) {
+                                fireStore.collection("AllOrders")
+                                    .document(snapshot.id).update("Order_status","Order Cancelled")
+                            }
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context,"Failed, Please Try Again",Toast.LENGTH_SHORT).show()
+                        }
+                    notifyDataSetChanged()
+                    holder.binding.tvCancel.text="Order Cancelled"
+                }
+            alert.show()
         }
     }
 

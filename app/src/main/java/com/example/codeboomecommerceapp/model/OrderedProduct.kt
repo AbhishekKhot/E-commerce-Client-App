@@ -9,13 +9,4 @@ data class OrderedProduct(
     var Order_Id:String?="",
     var Order_time:String?="",
     var Order_status:String?=""
-
-//      var name:String?="",
-//      var orderId:String?="",
-//      var userId:String?="",
-//      var status:String?="",
-//      var productId:String?="",
-//      var price:String?="",
-
-
 )
