@@ -5,17 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.FragmentCategoriesBinding
 import com.example.codeboomecommerceapp.adapters.CategoriesProductAdapter
 import com.example.codeboomecommerceapp.db.ProductModel
 import com.example.codeboomecommerceapp.db.SavedProduct
 import com.example.codeboomecommerceapp.model.Product
-import com.example.codeboomecommerceapp.ui.ProductViewModel
 import com.example.codeboomecommerceapp.util.GridSpacingItemDecoration
 import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 import com.google.firebase.firestore.ktx.firestore
@@ -41,7 +40,8 @@ class CategoriesFragment : Fragment(), ProductAdapterOnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arrangeItemsRecyclerView()
+
+        setUpRecyclerView()
 
         val list = ArrayList<Product>()
         firebase.collection("Products").whereEqualTo("product_category", args.categoryName)
@@ -52,16 +52,13 @@ class CategoriesFragment : Fragment(), ProductAdapterOnItemClickListener {
                     list.add(data!!)
                 }
                 categoriesProductAdapter.differ.submitList(list)
-                binding.recyclerViewCategoriesProduct.adapter = categoriesProductAdapter
             }
     }
 
-    private fun arrangeItemsRecyclerView() {
+    private fun setUpRecyclerView() {
         binding.recyclerViewCategoriesProduct.apply {
-            val spanCount = 3
-            val spacing = 50
-            val includeEdge = false
-            this.addItemDecoration(GridSpacingItemDecoration(spanCount, spacing, includeEdge))
+            this.layoutManager=GridLayoutManager(requireContext(),2)
+            this.adapter=categoriesProductAdapter
         }
     }
 

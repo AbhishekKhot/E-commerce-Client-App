@@ -5,16 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    android:layout_marginHorizontal="10dp"
     tools:context=".ui.fragments.CategoriesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCategoriesProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/categorised_product_item"
         android:orientation="vertical"
-        app:spanCount="2"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+        android:padding="3dp"
+        tools:listitem="@layout/categorised_product_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

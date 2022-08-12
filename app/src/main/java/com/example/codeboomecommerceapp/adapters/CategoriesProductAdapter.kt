@@ -1,9 +1,7 @@
 package com.example.codeboomecommerceapp.adapters
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.codeboomecommerceapp.R
 import com.example.codeboomecommerceapp.databinding.CategorisedProductItemBinding
 import com.example.codeboomecommerceapp.model.Product
-import com.example.codeboomecommerceapp.util.CategoriesItemClickListener
 import com.example.codeboomecommerceapp.util.ProductAdapterOnItemClickListener
 
 class CategoriesProductAdapter(val itemClickListener: ProductAdapterOnItemClickListener) :
@@ -46,6 +43,8 @@ class CategoriesProductAdapter(val itemClickListener: ProductAdapterOnItemClickL
         Glide.with(holder.itemView).load(product.product_cover_image)
             .placeholder(R.drawable.ic_image).into(holder.binding.ivProduct)
         holder.binding.tvProductName.text = product.product_name
+        holder.binding.tvProductDescription.text=product.product_description
+        holder.binding.tvProductPrice.text=product.product_selling_price
 
         holder.itemView.setOnClickListener {
             itemClickListener.viewDetails(product.product_id.toString())

@@ -16,31 +16,51 @@
             <ImageView
                 android:id="@+id/ivProduct"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="120dp"
                 android:src="@drawable/ic_image"
                 android:padding="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/tvName"/>
-            <TextView
-                android:id="@+id/tvName"
+                app:layout_constraintBottom_toTopOf="@id/layout"/>
+
+            <LinearLayout
+                android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/product_name"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:fontFamily="@font/raleway"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivProduct"/>
+                app:layout_constraintTop_toBottomOf="@id/ivProduct">
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_name"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/raleway"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_price"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/raleway"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

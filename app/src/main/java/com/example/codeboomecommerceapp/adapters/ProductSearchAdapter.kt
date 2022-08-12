@@ -38,6 +38,7 @@ class ProductSearchAdapter(val itemClickListener: ProductAdapterOnItemClickListe
         Glide.with(holder.itemView).load(product.product_cover_image)
             .placeholder(R.drawable.ic_image).into(holder.binding.ivProduct)
         holder.binding.tvName.text = product.product_name
+        holder.binding.tvPrice.text = product.product_selling_price
 
         holder.binding.ivProduct.setOnClickListener {
             itemClickListener.viewDetails(product.product_id.toString())

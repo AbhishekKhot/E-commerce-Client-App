@@ -58,4 +58,8 @@
     <string name="city_name">City Name</string>
     <string name="proceed_to_pay">PROCEED TO PAY</string>
     <string name="address">Address</string>
+    <string name="ordered_at">Ordered At</string>
+    <string name="_11_08_2022">11/08/2022</string>
+    <string name="ordered">Ordered</string>
+    <string name="order_status">Order Status</string>
 </resources>
