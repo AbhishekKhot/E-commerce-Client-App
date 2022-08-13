@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_accountFragment_to_termsAndConditionsFragment"
             app:destination="@id/termsAndConditionsFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_ordersActivity"
+            app:destination="@id/ordersActivity" />
     </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
@@ -147,5 +150,10 @@
             android:id="@+id/action_savedProductsFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
     </fragment>
+    <activity
+        android:id="@+id/ordersActivity"
+        android:name="com.example.codeboomecommerceapp.ui.OrdersActivity"
+        android:label="activity_orders"
+        tools:layout="@layout/activity_orders" />
 
 </navigation>

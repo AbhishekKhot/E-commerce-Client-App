@@ -63,17 +63,6 @@ class OrderHistoryAdapter(val context: Context) : RecyclerView.Adapter<OrderHist
                 .setPositiveButton("YES") { dialog, which ->
                     val fireStore= Firebase.firestore
 
-//                    val order_data = hashMapOf<String, Any>()
-//                    order_data["Order_status"]="Order Cancelled"
-//
-//                    fireStore.collection("AllOrders").document(product.Order_Id.toString()).update(order_data)
-//                        .addOnSuccessListener {
-//                            holder.binding.tvCancel.text="Order Cancelled"
-//                        }
-//                        .addOnFailureListener {
-//                            Toast.makeText(context,"Failed, Please Try Again",Toast.LENGTH_SHORT).show()
-//                        }
-
                     fireStore.collection("AllOrders").whereEqualTo("Product_Id",product.Product_Id).get()
                         .addOnCompleteListener {
                             for (snapshot in it.result) {

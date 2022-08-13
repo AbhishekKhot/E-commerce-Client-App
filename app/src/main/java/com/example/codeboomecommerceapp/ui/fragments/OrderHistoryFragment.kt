@@ -35,6 +35,7 @@ class OrderHistoryFragment : Fragment() {
     }
 
     private fun getOrderHistoryData() {
+
         fireStore.collection("AllOrders").get()
             .addOnSuccessListener {
                 list.clear()

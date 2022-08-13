@@ -44,7 +44,7 @@ class AccountFragment : Fragment() {
         }
 
         binding.cardOrderHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_accountFragment_to_orderHistoryFragment)
+            findNavController().navigate(R.id.action_accountFragment_to_ordersActivity)
         }
 
         binding.cardSettings.setOnClickListener {
@@ -54,14 +54,7 @@ class AccountFragment : Fragment() {
         binding.cardTermsAndConditions.setOnClickListener {
             val bundle=Bundle()
             bundle.putString("url","https://www.termsandcondiitionssample.com/live.php?token=HNIN3gDMoYlq6AK5nidELQqsVOH7swbR")
-
             findNavController().navigate(R.id.action_accountFragment_to_termsAndConditionsFragment,bundle)
-//                    try {
-//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.termsandcondiitionssample.com/live.php?token=HNIN3gDMoYlq6AK5nidELQqsVOH7swbR"))
-//                startActivity(browserIntent)
-//            }catch(e:Exception) {
-//                Toast.makeText(requireContext(),e.message,Toast.LENGTH_SHORT).show()
-//            }
         }
     }
 
